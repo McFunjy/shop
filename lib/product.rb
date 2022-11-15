@@ -1,6 +1,12 @@
 class Product
   attr_accessor :price, :count
 
+  class << self
+    def from_file(file_path)
+      raise NotImplementedError
+    end
+  end
+
   def initialize(params)
     @price = params[:price]
     @count = params[:count]

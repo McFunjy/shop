@@ -1,6 +1,20 @@
 class Book < Product
   attr_accessor :title, :genre, :author
 
+  class << self
+    def from_file(file_path)
+      lines = File.readlines(file_path, chomp: true)
+
+      self.new(
+        title: lines[0],
+        genre: lines[1],
+        author: lines[2],
+        price: lines[3].to_i,
+        count: lines[4].to_i
+      )
+    end
+  end
+
   def initialize(params)
     super
 

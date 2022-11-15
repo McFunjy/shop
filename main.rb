@@ -2,31 +2,17 @@ require_relative 'lib/product'
 require_relative 'lib/film'
 require_relative 'lib/book'
 
-# products = []
-#
-# products << Film.new(
-#   title: 'Леон', year: '1994', director: 'Люк Бессон', price: 990, count: 5
-# )
-#
-# products << Film.new(
-#   title: 'Дурак', year: '2014', director: 'Юрий Быков', price: 390, count: 1
-# )
-#
-# products << Book.new(
-#   title: 'Идиот',
-#   genre: 'роман',
-#   author: 'Федор Достоевский',
-#   price: 1500,
-#   count: 10
-# )
-#
-# # Выводим все продукты в консоль просто передавая их методу puts
-# puts 'Вот какие товары у нас есть:'
-# puts
-# products.each { |product| puts product }
+film = Film.from_file(__dir__ + '/data/films/01.txt')
+book = Book.from_file(__dir__ + '/data/books/01.txt')
 
-product = Film.new(title: 'Леон', director: 'Люк Бессон', price: 990)
-puts product
-product.year = 1994
-product.count = 5
-puts product
+# Выводим их на экран
+puts film
+puts book
+
+# Пытаемся вызвать метод from_file у класса Product и ловим ошибку
+begin
+  Product.from_file(__dir__ + '/data/films/01.txt')
+rescue NotImplementedError
+  puts 'Метод класса Product.from_file не реализован'
+end
+
