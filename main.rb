@@ -1,18 +1,16 @@
 require_relative 'lib/product'
 require_relative 'lib/film'
 require_relative 'lib/book'
+require_relative 'lib/product_collection'
 
-film = Film.from_file(__dir__ + '/data/films/01.txt')
-book = Book.from_file(__dir__ + '/data/books/01.txt')
+collection = ProductCollection.from_dir(File.dirname(__FILE__) + '/data')
 
-# Выводим их на экран
-puts film
-puts book
+# Сортируем продукты по возрастанию цены с помощью метода sort! экземпляра
+# класса ProductCollection
+collection.sort!(by: :title, order: :asc)
 
-# Пытаемся вызвать метод from_file у класса Product и ловим ошибку
-begin
-  Product.from_file(__dir__ + '/data/films/01.txt')
-rescue NotImplementedError
-  puts 'Метод класса Product.from_file не реализован'
+# Получаем массив продуктов методом to_a и выводим каждый на экран, передавая
+# его методу puts в качестве аргумента.
+collection.to_a.each do |product|
+  puts product
 end
-
