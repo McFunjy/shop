@@ -2,7 +2,10 @@ class ProductCollection
   PRODUCT_TYPES = [
     {dir: 'films', class: Film},
     {dir: 'books', class: Book},
+    {dir: 'albums', class: Album},
   ]
+
+  attr_accessor :collection
   class << self
     def from_dir(dir_path)
       products = []
